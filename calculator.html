@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator App</title>
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: rgb(246, 240, 248); 
+        }
+
+        #calculator {
+            text-align: center;
+            background-color: lavender; 
+            padding: 20px;
+            border-radius: 10px;
+            border: 5px solid black; 
+        }
+
+        #result {
+            padding: 20px;
+            border-radius: 10px;
+            text-align: right;
+            background-color: rgb(220, 217, 214); 
+            width: 290px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+
+        .num-btn, .op-btn {
+            padding: 20px;
+            margin: 5px;
+            border-radius: 10px; 
+            color: black;
+            border: 2px solid black;
+            font-size: 18px;
+            width: 60px; 
+            height: 60px;
+            box-sizing: border-box;
+            background-color: lavenderblush;
+        }
+
+        .op-btn {
+            background-color: thistle;
+             
+        }
+
+        .wide-btn {
+            width: 134px;
+        }
+
+  
+        h1 {
+            font-family: 'Cookie', cursive;
+            font-size: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div id="calculator">
+        <h1>Calculator App</h1>
+        <br />
+        <input type="text" id="result" disabled>
+        <br>
+        <input type="button" class="num-btn wide-btn" value="C" onclick="clearinput()">
+        <input type="button" class="op-btn" value="⌦" onclick="deleteLast()">
+        <input type="button" class="op-btn" value="+" onclick="add()">
+        <br>
+        <input type="button" class="num-btn" value="1" onclick="appendNumber(1)">
+        <input type="button" class="num-btn" value="2" onclick="appendNumber(2)">
+        <input type="button" class="num-btn" value="3" onclick="appendNumber(3)">
+        <input type="button" class="op-btn" value="÷" onclick="divide()">
+        <br>
+        <input type="button" class="num-btn" value="4" onclick="appendNumber(4)">
+        <input type="button" class="num-btn" value="5" onclick="appendNumber(5)">
+        <input type="button" class="num-btn" value="6" onclick="appendNumber(6)">
+        <input type="button" class="op-btn" value="x" onclick="multiply()">
+        <br>
+        <input type="button" class="num-btn" value="7" onclick="appendNumber(7)">
+        <input type="button" class="num-btn" value="8" onclick="appendNumber(8)">
+        <input type="button" class="num-btn" value="9" onclick="appendNumber(9)">
+        <input type="button" class="op-btn" value="-" onclick="minus()">
+        <br>
+        <input type="button" class="num-btn" value="." onclick="decimal()">
+        <input type="button" class="num-btn" value="0" onclick="appendNumber(0)">
+        <input type="button" class="op-btn wide-btn" value="=" onclick="calculate()">
+        <br>
+    </div>
+
+    <script>
+        let currentInput = '';
+        let currentOperator = '';
+
+        function appendNumber(number) {
+            currentInput += number;
+            document.getElementById('result').value = currentInput;
+        }
+
+        function divide() {
+            currentOperator = '/';
+            currentInput += currentOperator;
+            document.getElementById('result').value = currentInput;
+        }
+
+        function multiply() {
+            currentOperator = '*';
+            currentInput += currentOperator;
+            document.getElementById('result').value = currentInput;
+        }
+
+        function minus() {
+            currentOperator = '-';
+            currentInput += currentOperator;
+            document.getElementById('result').value = currentInput;
+        }
+
+        function add() {
+            currentOperator = '+';
+            currentInput += currentOperator;
+            document.getElementById('result').value = currentInput;
+        }
+
+        function decimal() {
+            currentOperator = '.';
+            currentInput += currentOperator;
+            document.getElementById('result').value = currentInput;
+        }
+
+        function clearinput() {
+            currentOperator = 'c';
+            currentInput = '';
+            document.getElementById('result').value = currentInput;
+        }
+
+        function deleteLast() {
+            currentInput = currentInput.slice(0, -1);
+            document.getElementById('result').value = currentInput;
+        }
+
+        function calculate() {
+            const result = eval(currentInput);
+            document.getElementById('result').value = result;
+            currentOperator = '';
+        }
+    </script>
+</body>
+</html>
